@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">TicTacToeCosmoVer</string>
+    <string name="count_start">0</string>
+    <string name="separator">:</string>
+</resources>

@@ -1,0 +1,181 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/score_red"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/count_start"
+                style="@style/WinnerTextViewStyle"
+                android:textColor="@color/red_player_color"
+                android:shadowColor="@color/red_player_color"/>
+
+            <TextView
+                android:id="@+id/score_separator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:text="@string/separator"
+                style="@style/WinnerTextViewStyle"  />
+
+            <TextView
+                android:id="@+id/score_yellow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/count_start"
+                style="@style/WinnerTextViewStyle"
+                android:textColor="@color/yellow_player_color"
+                android:shadowColor="@color/yellow_player_color"/>
+
+        </LinearLayout>
+
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/field1"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/star_image"
+                    style="@style/GameButtonStyle"
+                    android:rotation="45"
+                    android:onClick="fieldsClick" />
+
+                <ImageButton
+                    android:id="@+id/field2"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/star_image"
+                    style="@style/GameButtonStyle"
+                    android:rotation="81"
+                    android:onClick="fieldsClick" />
+
+                <ImageButton
+                    android:id="@+id/field3"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/star_image"
+                    style="@style/GameButtonStyle"
+                    android:rotation="274"
+                    android:onClick="fieldsClick" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/field4"
+                    android:src="@drawable/star_image"
+                    android:importantForAccessibility="no"
+                    style="@style/GameButtonStyle"
+                    android:rotation="61"
+                    android:onClick="fieldsClick" />
+
+                <ImageButton
+                    android:id="@+id/field5"
+                    android:src="@drawable/star_image"
+                    android:importantForAccessibility="no"
+                    style="@style/GameButtonStyle"
+                    android:rotation="114"
+                    android:onClick="fieldsClick" />
+
+                <ImageButton
+                    android:id="@+id/field6"
+                    android:src="@drawable/star_image"
+                    android:importantForAccessibility="no"
+                    style="@style/GameButtonStyle"
+                    android:rotation="128"
+                    android:onClick="fieldsClick" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/field7"
+                    android:src="@drawable/star_image"
+                    android:importantForAccessibility="no"
+                    style="@style/GameButtonStyle"
+                    android:rotation="202"
+                    android:onClick="fieldsClick" />
+
+                <ImageButton
+                    android:id="@+id/field8"
+                    android:src="@drawable/star_image"
+                    android:importantForAccessibility="no"
+                    style="@style/GameButtonStyle"
+                    android:rotation="21"
+                    android:onClick="fieldsClick"/>
+
+                <ImageButton
+                    android:id="@+id/field9"
+                    android:src="@drawable/star_image"
+                    android:importantForAccessibility="no"
+                    style="@style/GameButtonStyle"
+                    android:rotation="96"
+                    android:onClick="fieldsClick"/>
+
+            </TableRow>
+        </TableLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@+id/tableLayout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/rocket"
+            android:layout_width="75dp"
+            android:layout_height="0dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/rocket"
+            android:rotation="90"
+            android:layout_gravity="center|start"
+            app:layout_constraintTop_toTopOf="@+id/tableLayout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="15dp" />
+
+    </FrameLayout>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
