@@ -13,8 +13,9 @@ public class TicTacToe_Gameplay {
     private final ImageButton[] buttons;
     private final List<int[]> combination;
     private boolean crossPlayer = true;
+    private final GameStateModel gameStateModel;
 
-    public TicTacToe_Gameplay(Activity activity, ImageButton[] buttons) {
+    public TicTacToe_Gameplay(Activity activity, ImageButton[] buttons, GameStateModel gameScoreModel) {
         this.activity = activity;
         this.buttons = buttons;
         this.combination = Arrays.asList(
@@ -27,21 +28,32 @@ public class TicTacToe_Gameplay {
                 new int[]{0, 4, 8},
                 new int[]{2, 4, 6}
         );
+        this.gameStateModel = gameScoreModel;
     }
 
     public void gameHandler(View view) {
         ImageButton button = (ImageButton) view;
+        int index = -1;
+        for (int i = 0; i < buttons.length; i++) {
+            if (buttons[i] == button) {
+                index = i;
+                break;
+            }
+        }
+
         if (button.getTag() == null || button.getTag().equals("star_image"))
         {
             if (crossPlayer)
             {
                 button.setImageResource(R.drawable.star_red_image);
                 button.setTag("star_red_image");
+                gameStateModel.setStateImageButtons(index, "star_red_image");
             }
             else
             {
                 button.setImageResource(R.drawable.star_yellow_image);
                 button.setTag("star_yellow_image");
+                gameStateModel.setStateImageButtons(index, "star_yellow_image");
             }
             crossPlayer = !crossPlayer;
             TicTacToe_Animation.animateButton(button);
@@ -93,12 +105,14 @@ public class TicTacToe_Gameplay {
             int redScore = Integer.parseInt(redSide.getText().toString());
             redSide.setText(String.valueOf(redScore + 1));
             TicTacToe_Animation.animateTextViewScore(redSide, "#E991B0");
+            gameStateModel.incrementRedScore();
         }
         else if (side.equals("yellow"))
         {
             int blueScore = Integer.parseInt(yellowSide.getText().toString());
             yellowSide.setText(String.valueOf(blueScore + 1));
             TicTacToe_Animation.animateTextViewScore(yellowSide, "#E2E78F");
+            gameStateModel.incrementYellowScore();
         }
     }
 
@@ -118,5 +132,6 @@ public class TicTacToe_Gameplay {
         crossPlayer = true;
         ImageView rocket = activity.findViewById(R.id.rocket);
         TicTacToe_Animation.resetRocketPosition(rocket);
+        gameStateModel.resetStateImageButtons();
     }
 }

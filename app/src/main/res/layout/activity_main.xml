@@ -42,8 +42,7 @@
                 android:layout_height="match_parent"
                 android:importantForAccessibility="no"
                 android:scaleType="centerCrop"
-                android:alpha="0.15"
-                app:srcCompat="@drawable/cosmo_animation_fast"/>
+                android:alpha="0.15" />
 
             <include
                 layout="@layout/game_interface"

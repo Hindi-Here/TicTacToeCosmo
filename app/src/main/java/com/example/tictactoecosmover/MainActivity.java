@@ -11,24 +11,28 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 
 public class MainActivity extends AppCompatActivity {
 
     private TicTacToe_Gameplay gameplay;
+    private GameStateModel gameStateModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        gameStateModel = new ViewModelProvider(this).get(GameStateModel.class);
+        gameplay = new TicTacToe_Gameplay(this, getAllImageButtons(), gameStateModel);
+
         setBarColor();
         startGifAnimation();
-        gameplay = new TicTacToe_Gameplay(this, getAllImageButtons());
-
         setContentMetrics();
-        setTextScoreSize();
+        setTextScore();
+        restoreStateImageButtons();
     }
 
     public void fieldsClick(View view) {
@@ -39,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         ImageView gifImageView = findViewById(R.id.imageViewGif);
         Glide.with(this)
                 .asGif()
-                .load(R.drawable.cosmo_animation_fast)
+                .load(R.drawable.cosmo_animation_slow)
                 .into(gifImageView);
 
     }
@@ -99,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         rocket.setLayoutParams(params);
     }
 
-    private void setTextScoreSize() {
+    private void setTextScore() {
         TextView redSide = findViewById(R.id.score_red);
         TextView yellowSide = findViewById(R.id.score_yellow);
         TextView separator = findViewById(R.id.score_separator);
@@ -109,6 +113,25 @@ public class MainActivity extends AppCompatActivity {
         redSide.setTextSize(textSize);
         yellowSide.setTextSize(textSize);
         separator.setTextSize(textSize);
+
+        redSide.setText(String.valueOf(gameStateModel.getRedScore()));
+        yellowSide.setText(String.valueOf(gameStateModel.getYellowScore()));
+    }
+
+    private void restoreStateImageButtons() {
+        ImageButton[] buttons = getAllImageButtons();
+        String[] stateImageButtons = gameStateModel.getStateImageButtons();
+        for (int i = 0; i < stateImageButtons.length; i++)
+        {
+            if (stateImageButtons[i] != null)
+            {
+                buttons[i].setTag(stateImageButtons[i]);
+                if (stateImageButtons[i].equals("star_red_image"))
+                    buttons[i].setImageResource(R.drawable.star_red_image);
+                else if (stateImageButtons[i].equals("star_yellow_image"))
+                    buttons[i].setImageResource(R.drawable.star_yellow_image);
+            }
+        }
     }
 
 }
